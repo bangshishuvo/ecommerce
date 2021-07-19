@@ -1,0 +1,33 @@
+{%extends 'index.html'%}
+{%load static%}
+    {%block titlee%}
+  
+    {{setting.title}}
+    {%endblock titlee%}
+    {%block description%} 
+    {{setting.title}}
+    {%endblock description%}
+    {%block keywords%}
+
+         {%endblock keywords%}
+
+         {%block header%}
+          {% include 'header.html' %}
+         {%endblock header%}
+         {%block sidebar%} {%endblock sidebar%}
+         {%block slider%} 
+         {% include 'slider.html' %}
+         {%endblock slider%}
+
+
+
+
+{%block mainbody%}
+  {% include 'content.html' %} 
+
+{%endblock%}
+{%block footer%} 
+{% include 'footer.html' %}
+{%endblock footer%}
+
+
