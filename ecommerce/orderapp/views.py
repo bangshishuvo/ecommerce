@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, HttpResponse, redirect, HttpResponseRedirect, reverse
-from Product.models import Category, Product
-
+from Product.models import Category,Product
+from Ecomapp.models import Setting
 from orderapp.models import ShopCart, ShopingCartForm
 # Create your views here.
 def Add_to_Shoping_cart(request, id):
@@ -44,4 +44,20 @@ def Add_to_Shoping_cart(request, id):
         
         return HttpResponseRedirect(url)
 
+def cart_details(request):
+    current_user = request .user
+    category = Category.objects.all()
+    setting = Setting.objects.get(id=1)
+    cart_product = ShopCart.objects.filter(user_id = current_user.id)
+    total_amount = 0
+    for p in cart_product :
+        total_amount += p.product.new_price*p.quantity
+
+    context={
+        'category' : category,
+        'setting' : setting,
+        'cart_product':cart_product,
+        'total_amount' :total_amount
+    }
+    return render(request,'cart_details.html',context)
         
